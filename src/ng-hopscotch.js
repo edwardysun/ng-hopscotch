@@ -50,17 +50,9 @@ angular.module('ngHopscotch').service('HSTour', ['hopscotch', 'HSHelper', 'HSCac
   };
 
   HSTour.patch = function(tour, isFinal) {
-    tour.onEnd = function() {
-      HSCache.isEnded = true;
-    };
-
     tour.onClose = function() {
       HSCache.isClosed = true;
     };
-
-    tour.steps.forEach(function(step) {
-      step.content += "<br /><a style='position:absolute;bottom:20px' href='#' onclick='HSRemoveTourItem(this,\"" + tour.id + "\"," + !!isFinal + ")'>Skip all</a>"
-    });
   };
 
   HSTour.prototype.init = function(tour) {
